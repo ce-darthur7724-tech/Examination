@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Examination</title>
+    <script src="script/aframe.js"></script>
+  </head>
+  <body>
+    <a-scene 
+      loading-screen="enabled: true; dotsColor: #000000; backgroundColor: #FFFFFF"
+      renderer="antialias: true; precision: mediump"
+      preload="auto">
+      <!-- Asset Management System -->
+      <a-assets timeout="60000" 
+        @loaded="console.log('Assets loaded successfully')"
+        @error="console.error('Error loading assets:', $event.detail)">
+        <img id="grassTexture" src="textures/Exterior and Interior/Grass 2.jpg" crossorigin="anonymous">
+        <img id="skyTexture" src="textures/Exterior and Interior/Sky 2.jpg" crossorigin="anonymous">
+        <!-- Models -->
+        <a-asset-item id="mansion" src="models/Mansion.glb" crossorigin="anonymous"></a-asset-item>
+        <a-asset-item id="dog" src="models/German dog.glb" crossorigin="anonymous"></a-asset-item>
+        <a-asset-item id="mdhouse" src="models/md_house.glb" crossorigin="anonymous"></a-asset-item>
+        <a-asset-item id="aston_martin" src="models/aston_martin_db11.glb" crossorigin="anonymous"></a-asset-item>
+      </a-assets>
+
+      <!-- Lighting -->
+      <a-light type="ambient" color="#ffffff" intensity="0.6"></a-light>
+      <a-light type="directional" color="#ffffff" position="1 1 1" intensity="1.0"></a-light>
+      <a-light type="directional" color="#ffffff" position="-1 1 -1" intensity="0.4"></a-light>
+
+      <!-- Sky -->
+      <a-sky src="#skyTexture" radius="2000"></a-sky>
+
+      <!-- Ground Level - Main Center Plane -->
+      <a-plane position="0 0.01 0" rotation="-90 0 0" width="2000" height="2000" material="src: #grassTexture; repeat: 600 600; roughness: 1"></a-plane>
+      
+      <!-- Extended Grass Coverage -->
+      <!-- Front and Back -->
+      <a-plane position="0 0.01 1000" rotation="-90 0 0" width="2000" height="2000" material="src: #grassTexture; repeat: 600 600; roughness: 1"></a-plane>
+      <a-plane position="0 0.01 -1000" rotation="-90 0 0" width="2000" height="2000" material="src: #grassTexture; repeat: 600 600; roughness: 1"></a-plane>
+      <!-- Left and Right -->
+      <a-plane position="-1000 0.01 0" rotation="-90 0 0" width="2000" height="2000" material="src: #grassTexture; repeat: 600 600; roughness: 1"></a-plane>
+      <a-plane position="1000 0.01 0" rotation="-90 0 0" width="2000" height="2000" material="src: #grassTexture; repeat: 600 600; roughness: 1"></a-plane>
+      <!-- Corners -->
+      <a-plane position="-1000 0.01 -1000" rotation="-90 0 0" width="2000" height="2000" material="src: #grassTexture; repeat: 600 600; roughness: 1"></a-plane>
+      <a-plane position="1000 0.01 -1000" rotation="-90 0 0" width="2000" height="2000" material="src: #grassTexture; repeat: 600 600; roughness: 1"></a-plane>
+      <a-plane position="-1000 0.01 1000" rotation="-90 0 0" width="2000" height="2000" material="src: #grassTexture; repeat: 600 600; roughness: 1"></a-plane>
+      <a-plane position="1000 0.01 1000" rotation="-90 0 0" width="2000" height="2000" material="src: #grassTexture; repeat: 600 600; roughness: 1"></a-plane>
+
+      <!-- Mansion -->
+      <a-entity
+          position="-150 1.5 0"
+          rotation="0 0 0"
+          scale="10 10 10"
+          gltf-model="#mansion"
+          render-order="opaque">
+      </a-entity>
+
+      <!-- Aston Martin DB11 (replacing McLaren) -->
+      <a-entity
+          position="20 1.3 230"
+          rotation="0 180 0"
+          scale="12 12 12"
+          gltf-model="#aston_martin"
+          render-order="opaque">
+      </a-entity>
+
+      <!-- MD House -->
+      <a-entity
+          position="150 1.5 150"
+          rotation="0 0 0"
+          scale="10 10 10"
+          gltf-model="#mdhouse"
+          render-order="opaque">
+      </a-entity>
+
+      <!-- Pool -->
+      <a-plane
+          position="150 0.1 150"
+          rotation="-90 0 0"
+          width="20"
+          height="20"
+          material="src: #grassTexture; shader: standard; metalness: 0.8; roughness: 0.2; envMapIntensity: 1">
+      </a-plane>
+
+      <!-- German Dog -->
+      <a-entity
+          position="0 4.5 270"
+          rotation="0 180 0"
+          scale="3 3 3"
+          gltf-model="#dog"
+          render-order="opaque">
+      </a-entity>
+
+      <!-- Camera Setup with Movement Controls -->
+      <a-entity position="0 5 300">
+        <a-camera wasd-controls="acceleration: 400; fly: true; constrainToNavMesh: false" look-controls="pointerLockEnabled: true"></a-camera>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
