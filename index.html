@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Scene with Grass Ground</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <!-- Sky with texture -->
+      <a-sky src="textures/Sky 1.jpg"></a-sky>
+      
+      <!-- Ground with grass texture - Main sections -->
+      <a-plane 
+        position="0 0 510" 
+        rotation="-90 0 0" 
+        width="1000" 
+        height="1000" 
+        material="src: textures/Grass 1.jpg; repeat: 100 100">
+      </a-plane>
+
+      <a-plane 
+        position="0 0 -510" 
+        rotation="-90 0 0" 
+        width="1000" 
+        height="1000" 
+        material="src: textures/Grass 1.jpg; repeat: 100 100">
+      </a-plane>
+
+      <a-plane 
+        position="-510 0 0" 
+        rotation="-90 0 0" 
+        width="1000" 
+        height="1000" 
+        material="src: textures/Grass 1.jpg; repeat: 100 100">
+      </a-plane>
+
+      <a-plane 
+        position="510 0 0" 
+        rotation="-90 0 0" 
+        width="1000" 
+        height="1000" 
+        material="src: textures/Grass 1.jpg; repeat: 100 100">
+      </a-plane>
+
+      <!-- Grass borders around brick platform -->
+      <a-box
+        position="40 0.005 0"
+        width="0.1"
+        height="0.01"
+        depth="80"
+        material="src: textures/Grass 1.jpg; repeat: 0.1 8">
+      </a-box>
+
+      <a-box
+        position="-40 0.005 0"
+        width="0.1"
+        height="0.01"
+        depth="80"
+        material="src: textures/Grass 1.jpg; repeat: 0.1 8">
+      </a-box>
+
+      <a-box
+        position="0 0.005 40"
+        width="80"
+        height="0.01"
+        depth="0.1"
+        material="src: textures/Grass 1.jpg; repeat: 8 0.1">
+      </a-box>
+
+      <a-box
+        position="0 0.005 -40"
+        width="80"
+        height="0.01"
+        depth="0.1"
+        material="src: textures/Grass 1.jpg; repeat: 8 0.1">
+      </a-box>
+
+      <!-- Brick platform for house -->
+      <a-plane 
+        position="0 0.2 0" 
+        rotation="-90 0 0" 
+        width="90" 
+        height="90" 
+        material="src: textures/Ground Bricks.jpg; repeat: 40 40">
+      </a-plane>
+
+      <!-- Luxury Mansion Model -->
+      <a-entity
+        gltf-model="models/luxury_mansion (2).glb"
+        position="0 -7 0"
+        rotation="0 0 0"
+        scale="1 1 1">
+      </a-entity>
+      
+      <!-- Add a camera with controls -->
+      <a-entity position="0 1.6 5">
+        <a-camera wasd-controls="acceleration: 5000" look-controls="pointerLockEnabled: true">
+          <a-cursor></a-cursor>
+        </a-camera>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
